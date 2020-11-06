@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="img/iconfinder_boot_62118.ico" type="image/x-icon">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css"
+        integrity="sha384-DhY6onE6f3zzKbjUPRc2hOzGAdEf4/Dz+WJwBvEYL/lkkIsI3ihufq9hk9K4lVoK" crossorigin="anonymous">
+    <style>
+        .navbar {
+            opacity: 0.8;
+            border-bottom: 1px solid #fff;
+        }
+
+        .jumbotron {
+            padding-top: 100px;
+            margin-bottom: 10px;
+        }
+    </style>
+
+    <title>MEFEY ÇORAP</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+        <div class="container">
+            <a href="/" class="navbar-brand"><img src="img/iconfinder_boot_62118.ico" alt="" style="width: 2rem; height:auto;"> MEFEY ÇORAP</a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div id="navbarCollapse" class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link active">Ana Sayfa</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="urunler.html" class="nav-link active">Ürünler</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="iletisim.html" class="nav-link active">İletişim</a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container" style="padding-top: 70px;">
+        <div class="row">
+            <div class="col-md-8">
+                <div id="map"  style="height: 400px; width: 100%;"></div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>İletişim</h5>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Adres:</h5>
+                        <p class="card-text">İki̇telli̇ OSB.  Çorapçılar Sanayi̇ Sitesi C Blok No 8. İki̇telli̇ Başakşehir İstanbul, Türkiye</p>
+                        <br>
+                        <h5 class="card-title">Telefon:</h5>
+                        <p class="card-text">0532 302 8766</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="py-5 my-5 bg-dark text-white text-center">
+        Copyright Mefey Çorap 2020
+    </footer>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.bundle.min.js"
+        integrity="sha384-BOsAfwzjNJHrJ8cZidOg56tcQWfp6y72vEJ8xQ9w6Quywb24iOsW913URv1IS4GD"
+        crossorigin="anonymous"></script>
+
+        <script>
+            //şu videodan izlenerek yapıldı
+            //https://www.youtube.com/watch?v=zbFDQ16oRwY
+            function initMap(){
+                var options={
+                    zoom:11,
+                    center:{lat:41.09, lng:28.8}
+                }
+                var image1='https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
+                var map= new google.maps.Map(document.getElementById("map"), options);
+                
+                /*
+                var marker=new google.maps.Marker({
+                    position:{lat:41, lng:29},
+                    map:map
+                    
+                });
+    
+                var infoWindow=new google.maps.InfoWindow({
+                    content:"<h2>Restaurant <span>tel:021244343434</span></h2>"
+                });
+                marker.addListener("click",function () {
+                    infoWindow.open(map,marker);
+                });
+                */
+    
+                var markers =[
+                    {
+                        coordinates:{lat:41.087,lng:28.787},
+                    content:"<h1>MEFEY ÇORAP</h1>",
+                    image:image1
+                    }
+                ];
+    
+                for(var i=0;i<markers.length;i++){
+                    AddMarker(markers[i]);
+                }
+    
+    
+                // AddMarker({
+                //     coordinates:{lat:41.05,lng:29.05},
+                //     content:"<h1>Restaurant2</h1>"
+                // });
+               
+    
+                function AddMarker(options) {
+                    var marker2=new google.maps.Marker({
+                        position:options.coordinates,
+                        map:map
+                    });
+                    if (options.image){
+                        marker2.setIcon(options.image);
+                    }
+                    
+                    if (options.content){
+                        
+                    var infoWindow2=new google.maps.InfoWindow({
+                        content:options.content
+                    });
+                    marker2.addListener("click",function () {
+                        infoWindow2.open(map,marker2);
+                    });
+                    }
+                }
+                /*
+                AddMarker({lat:41.01,lng:29.01});
+                AddMarker({lat:41.05,lng:29.05});
+                function AddMarker(coordinates) {
+                    var marker2=new google.maps.Marker({
+                        position:coordinates,
+                        map:map
+                    });
+                }
+                */
+    
+            }
+    
+            //google maps keyi şöyle alındı:
+            //https://console.cloud.google.com/apis/credentials?project=mymaps-267321
+            //kimlik bilgileri,
+            //kimlik bilgisi oluştur,
+            //api anahtarı.
+    
+            /*
+            google maps api tutorial
+            https://developers.google.com/maps/documentation/javascript/tutorial
+            
+            var demeden, = ile değişken tanımlıyorlar.
+    
+    değişkendeki () fonksiyonu, sonradan sadece o kısmı alıp tanımlıyorlar.
+    () fonksiyondaki parametreleri, parametre:açıklama şeklinde yapıyorlar.
+    
+    mesela
+    map = new google.maps.Map(mapDiv:Node, opts?:MapOptions)
+    
+    Map(mapDiv:Node, opts?:MapOptions)
+    
+    
+            */
+        </script>
+    
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDyr4zvLBEYY1DW0lY1Kkd1Hvw_rp3WTgk&callback=initMap"
+      type="text/javascript"></script>
+
+
+</body>
+
+</html>
